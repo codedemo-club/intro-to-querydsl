@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
-public class StudentService {
+public class StudentDao {
 
     @PersistenceContext
     EntityManager entityManager;
