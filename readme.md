@@ -9,7 +9,7 @@
 
 The following was discovered as part of building this project:
 
-* The original package name 'club.codedemo.querydsl-with-jpa-tutorial' is invalid and this project uses 'club.codedemo.querydslwithjpatutorial' instead.
+* The original package name 'club.codedemo.querydsl-with-jpa-tutorial' is invalid and this project uses 'club.codedemo.introtoquerydsl' instead.
 
 # Getting Started
 

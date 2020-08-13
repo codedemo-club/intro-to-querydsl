@@ -1,5 +1,8 @@
 package club.codedemo.introtoquerydsl;
 
+import com.querydsl.core.Tuple;
+import com.querydsl.core.types.dsl.Expressions;
+import com.querydsl.core.types.dsl.NumberPath;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Service;
@@ -17,45 +20,49 @@ public class StudentDao {
 
     /**
      * 查询姓名为X的学生
+     *
      * @param name 学生姓名
      * @return
      */
-    Student findByName(String name) {
+    public Student findByName(String name) {
         JPAQueryFactory query = new JPAQueryFactory(entityManager);
-
         QStudent qStudent = QStudent.student;
 
         return query.selectFrom(qStudent)
-             .where(qStudent.name.eq(name))
-             .fetchOne();
+                    .where(qStudent.name.eq(name))
+                    .fetchOne();
     }
 
     /**
      * 按体重排序
+     *
      * @return
      */
-    List<Student> findAllOrderByWeight() {
+    public List<Student> findAllOrderByWeight() {
         JPAQueryFactory query = new JPAQueryFactory(entityManager);
-
         QStudent qStudent = QStudent.student;
 
         return query.selectFrom(qStudent)
-                .orderBy(qStudent.weight.asc())
-                .fetch();
+                    .orderBy(qStudent.weight.asc())
+                    .fetch();
     }
 
     /**
-     * 按体重group
+     * 按体重group、按人数排序
+     *
      * @return
      */
-    List<Integer> groupByWeight() {
+    public List<Tuple> groupByWeightAndOrderById() {
         JPAQueryFactory query = new JPAQueryFactory(entityManager);
         QStudent qStudent = QStudent.student;
 
-        return query.select(qStudent.weight)
-             .from(qStudent)
-             .groupBy(qStudent.weight)
-             .fetch();
+        NumberPath<Long> count = Expressions.numberPath(Long.class, "c");
+
+        return query.select(qStudent.weight, qStudent.id.count().as(count))
+                    .from(qStudent)
+                    .groupBy(qStudent.weight)
+                    .orderBy(count.desc())
+                    .fetch();
     }
 
     /**
@@ -67,9 +74,9 @@ public class StudentDao {
         QCourse qCourse = QCourse.course;
 
         return query.selectFrom(qStudent)
-                .innerJoin(qStudent.courses, qCourse)
-                .on(qCourse.name.endsWith(courseName))
-                .fetch();
+                    .innerJoin(qStudent.courses, qCourse)
+                    .on(qCourse.name.endsWith(courseName))
+                    .fetch();
     }
 
     /**
@@ -81,16 +88,17 @@ public class StudentDao {
         QKlass qKlass = QKlass.klass;
 
         return query.selectFrom(qStudent)
-             .where(qStudent.klass.id.in(
-                     JPAExpressions.select(qKlass.id)
-                     .from(qKlass)
-                     .where(qKlass.name.eq(klassName))
-             )).fetch();
+                    .where(qStudent.klass.id.in(
+                            JPAExpressions.select(qKlass.id)
+                                          .from(qKlass)
+                                          .where(qKlass.name.eq(klassName))
+                    )).fetch();
     }
 
     /**
      * 修改学生信息
-     * @param no 学号
+     *
+     * @param no   学号
      * @param name 姓名
      */
     @Transactional(rollbackFor = Exception.class)
@@ -106,6 +114,7 @@ public class StudentDao {
 
     /**
      * 删除学生
+     *
      * @param name 姓名
      */
     @Transactional(rollbackFor = Exception.class)

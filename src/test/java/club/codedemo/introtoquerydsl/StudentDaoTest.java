@@ -1,7 +1,6 @@
-package club.codedemo.querydslwithjpatutorial;
+package club.codedemo.introtoquerydsl;
 
-import club.codedemo.introtoquerydsl.Student;
-import club.codedemo.introtoquerydsl.StudentDao;
+import com.querydsl.core.Tuple;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +31,12 @@ class StudentDaoTest {
 
     @Test
     void groupByWeight() {
-        Assertions.assertEquals(3,
-                this.studentDao.groupByWeight().size());
+        List<Tuple>  students = this.studentDao.groupByWeightAndOrderById();
+        Assertions.assertEquals(3, students.size());
+        // 最低体重为60
+        Assertions.assertEquals(60, students.get(0).get(0, Integer.class));
+        // 60体重的学生有2个
+        Assertions.assertEquals(2, students.get(0).get(1, Long.class));
     }
 
     @Test
