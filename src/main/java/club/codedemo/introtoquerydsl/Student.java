@@ -1,6 +1,4 @@
-package club.codedemo.querydslwithjpatutorial;
-
-import com.querydsl.core.annotations.QueryEntity;
+package club.codedemo.introtoquerydsl;
 
 import javax.persistence.*;
 import java.util.ArrayList;

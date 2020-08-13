@@ -1,4 +1,4 @@
-package club.codedemo.querydslwithjpatutorial;
+package club.codedemo.introtoquerydsl;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

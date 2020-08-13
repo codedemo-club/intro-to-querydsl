@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>club.codedemo</groupId>
-	<artifactId>querydsl-with-jpa-tutorial</artifactId>
+	<artifactId>intro-to-querydsl</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>querydsl-with-jpa-tutorial</name>
-	<description>http://www.codedemo.club/querydsl-with-jpa-tutorial/</description>
+	<name>intro-to-querydsl</name>
+	<description>http://www.codedemo.club/intro-to-querydsl/</description>
 
 	<properties>
 		<java.version>1.8</java.version>
