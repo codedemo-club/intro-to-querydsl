@@ -1,8 +1,5 @@
 package club.codedemo.introtoquerydsl;
 
-import club.codedemo.querydslwithjpatutorial.QCourse;
-import club.codedemo.querydslwithjpatutorial.QKlass;
-import club.codedemo.querydslwithjpatutorial.QStudent;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Service;

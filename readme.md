@@ -3,11 +3,9 @@
 
 由于querydsl需要根据实体动态生成以Q打头的映射类，所以此项目不能够直接运行。
 
-在运行以前需要经过以下两步：
-1. 执行mvn install
-2. 在pom.xml上点击右键 --> maven --> Generate Sources and Update Folders 
-
 本项目对应文章地址：http://www.codedemo.club/querydsl-with-jpa-tutorial/
+
+请参考文章运行测试。
 
 The following was discovered as part of building this project:
 
