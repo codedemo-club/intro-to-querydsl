@@ -1,5 +1,5 @@
 # Read Me First
-项目在IDEA下测试运行正常。
+项目在IDEA下测试运行正常，数据初始化的工作由resource/data.sql来完成。
 
 由于querydsl需要根据实体动态生成以Q打头的映射类，所以此项目不能够直接运行。
 
